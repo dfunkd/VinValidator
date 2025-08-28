@@ -167,6 +167,7 @@ public partial class MainWindow : Window
                 vm.AssetCount = 0;
                 vm.UnitCount = 0;
                 vm.VehicleCount = 0;
+                vm.TotalCount = 0;
 
                 List<Task> tasks = [vm.FilterAssets(cancellationToken), vm.FilterUnits(cancellationToken), vm.FilterVehicles(cancellationToken)];
                 Task.WaitAll([.. tasks]);
@@ -189,9 +190,10 @@ public partial class MainWindow : Window
                 }));
                 Task.WaitAll([.. populateTasks]);
 
-                vm.AssetCount = vm.FilteredAssets.Count();
-                vm.UnitCount = vm.FilteredUnits.Count(); ;
-                vm.VehicleCount = vm.FilteredVehicles.Count();
+                vm.AssetCount = vm.FilteredAssets.Count;
+                vm.UnitCount = vm.FilteredUnits.Count;
+                vm.VehicleCount = vm.FilteredVehicles.Count;
+                vm.TotalCount = vm.AssetCount + vm.UnitCount + vm.VehicleCount;
 
                 vm.IsProcessing = false;
 

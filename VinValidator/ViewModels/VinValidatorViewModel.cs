@@ -38,6 +38,20 @@ public class VinValidatorViewModel : BaseViewModel
         }
     }
 
+    private int totalCount = 0;
+    public int TotalCount
+    {
+        get => totalCount;
+        set
+        {
+            if (totalCount != value)
+            {
+                totalCount = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     private int unitCount = 0;
     public int UnitCount
     {
@@ -286,52 +300,22 @@ public class VinValidatorViewModel : BaseViewModel
     public async Task PopulateAssetsAsync(CancellationToken cancellationToken = default)
     {
         invalidAssets = [.. await ruanMasterDataService.GetAssetsAsync(cancellationToken)];
-        /*
-        List<EamAsset> assets = [.. await ruanMasterDataService.GetAssetsAsync(cancellationToken)];
-        
-        foreach (var asset in assets)
-        {
-            if (asset.SerialNumber is null)
-                continue;
-            if (!asset.SerialNumber.IsValidVin())
-                InvalidAssets.Add(asset);
-        }
-        */
-        AssetCount = InvalidAssets.Count();
+
+        AssetCount = InvalidAssets.Count;
     }
 
     public async Task PopulateUnitsAsync(CancellationToken cancellationToken = default)
     {
         invalidUnits = [.. await ruanMasterDataService.GetUnitsAsync(cancellationToken)];
-        /*
-        List<Unit> units = [.. await ruanMasterDataService.GetUnitsAsync(cancellationToken)];
 
-        foreach (var unit in units)
-        {
-            if (unit.ChassisSerialNumber is null)
-                continue;
-            if (!unit.ChassisSerialNumber.IsValidVin())
-                InvalidUnits.Add(unit);
-        }
-        */
-        UnitCount = InvalidUnits.Count();
+        UnitCount = InvalidUnits.Count;
     }
 
     public async Task PopulateVehiclesAsync(CancellationToken cancellationToken = default)
     {
         invalidVehicles = [.. await ruanMasterDataService.GetVehicleSyncsAsync(cancellationToken)];
-        /*
-        List<VehicleSync> vehicles = [.. await ruanMasterDataService.GetVehicleSyncsAsync(cancellationToken)];
 
-        foreach (var vehicle in vehicles)
-        {
-            if (vehicle.VIN is null)
-                continue;
-            if (!vehicle.VIN.IsValidVin())
-                InvalidVehicles.Add(vehicle);
-        }
-        */
-        VehicleCount = InvalidVehicles.Count();
+        VehicleCount = InvalidVehicles.Count;
     }
     #endregion
 }

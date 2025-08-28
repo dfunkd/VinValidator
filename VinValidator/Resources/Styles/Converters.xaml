@@ -3,5 +3,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <conv:BoolToCollapsedConverter x:Key="BoolToCollapsedConverter" />
+    <conv:ZeroCountToDisabledConverter x:Key="ZeroCountToDisabledConverter" />
     <conv:RatioConverter x:Key="RatioConverter" />
 </ResourceDictionary>

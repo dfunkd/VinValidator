@@ -94,6 +94,12 @@
                         <Border DockPanel.Dock="Left" BorderBrush="{DynamicResource Darkest}" BorderThickness="1" Margin="5, 5, 0, 5">
                             <TextBox DockPanel.Dock="Left" Background="{DynamicResource Lighter}" Foreground="{DynamicResource Lightest}" BorderBrush="Transparent"
                                      BorderThickness="0" Text="{Binding Path=AssetSearchString, UpdateSourceTrigger=PropertyChanged}" TextChanged="OnSearchChanged">
+                                <TextBox.IsEnabled>
+                                    <MultiBinding Converter="{StaticResource ZeroCountToDisabledConverter}">
+                                        <Binding Path="TotalCount" />
+                                        <Binding Path="AssetSearchString" />
+                                    </MultiBinding>
+                                </TextBox.IsEnabled>
                                 <TextBox.Resources>
                                     <Style TargetType="{x:Type Border}">
                                         <Setter Property="BorderBrush" Value="{DynamicResource Darkest}" />
@@ -118,6 +124,12 @@
                         <Border DockPanel.Dock="Left" BorderBrush="{DynamicResource Darkest}" BorderThickness="1" Margin="5, 5, 0, 5">
                             <TextBox DockPanel.Dock="Left" Background="{DynamicResource Lighter}" Foreground="{DynamicResource Lightest}" BorderBrush="Transparent"
                                      BorderThickness="0" Text="{Binding Path=VinSearchString, UpdateSourceTrigger=PropertyChanged}" TextChanged="OnSearchChanged">
+                                <TextBox.IsEnabled>
+                                    <MultiBinding Converter="{StaticResource ZeroCountToDisabledConverter}">
+                                        <Binding Path="TotalCount" />
+                                        <Binding Path="VinSearchString" />
+                                    </MultiBinding>
+                                </TextBox.IsEnabled>
                                 <TextBox.Resources>
                                     <Style TargetType="{x:Type Border}">
                                         <Setter Property="BorderBrush" Value="{DynamicResource Darkest}" />
